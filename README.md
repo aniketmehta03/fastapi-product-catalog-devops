@@ -1,8 +1,33 @@
+<<<<<<< HEAD
 # Product Catalog Backend – Docker Containerization
 
 This repository contains the **containerized backend service for a Product Catalog application** built using **FastAPI and MongoDB**.
 
 The implementation focuses on **Task 3: Containerization and Local Orchestration with Docker** from the Unified Technical Assessment.
+=======
+# Product Catalog Backend 
+
+# Task Coverage
+
+This repository focuses primarily on **Task 3 – Containerization and Local Orchestration with Docker**, as discussed with the assignment coordinator.
+
+## Task 1 – UI/UX Design and Frontend
+
+The UI/UX design and frontend/mobile implementation were not included in this repository.  
+Since the focus of my role is **DevOps engineering**, the implementation effort was directed toward backend containerization, infrastructure setup, and service orchestration.
+
+## Task 2 – Backend API Development
+
+A working FastAPI backend service is included in this repository.  
+The current implementation models a **mobile app catalog API** and demonstrates:
+
+- REST API development with FastAPI
+- CRUD operations
+- MongoDB integration
+- Automatic API documentation using Swagger UI
+
+This backend service serves as the application component required for **Task 3 containerization**.
+>>>>>>> 398eea6 (README.md)
 
 ---
 
