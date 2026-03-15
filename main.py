@@ -50,11 +50,14 @@ def liveness():
     return {"status": "ok"}
 
 @app.get("/health/readiness")
-async def readiness():
-    """Readiness probe checks that the application can connect to the database."""
+def readiness(db: Session = Depends(get_db)):
+    """Readiness probe checks that the application can connect to the database.
+    If the database query fails we raise a 503 so Kubernetes will treat the
+    pod as not ready and avoid sending traffic.
+    """
     try:
-        # simple check: try to get apps
-        await services.get_apps()
+        # simple lightweight query
+        db.execute(text("SELECT 1"))
     except Exception:
         raise HTTPException(status_code=503, detail="database unavailable")
     return {"status": "ready"}

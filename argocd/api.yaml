@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: fastapi
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/aniketmehta03/fastapi-product-catalog-devops.git
+    targetRevision: feature/devops-assignment-setup
+    path: helm/product-api
+    helm:
+      valueFiles:
+        - values.yaml            # use the chart's default values
+  destination:
+    server: https://kubernetes.default.svc   # Replace with your Cluster Url, To get run: `argocd cluster list`
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
