@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "product-api.fullname" . }}-mongo
+  labels:
+    {{- include "product-api.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "product-api.selectorLabels" . | nindent 6 }}
+      app: mongo
+  template:
+    metadata:
+      labels:
+        {{- include "product-api.labels" . | nindent 8 }}
+        app: mongo
+    spec:
+      containers:
+        - name: mongo
+          image: mongo:7
+          ports:
+            - containerPort: 27017
+          envFrom:
+            - secretRef:
+                name: {{ include "product-api.fullname" . }}-mongo-secret
+          volumeMounts:
+            - name: mongo-storage
+              mountPath: /data/db
+      volumes:
+        - name: mongo-storage
+          emptyDir: {}
